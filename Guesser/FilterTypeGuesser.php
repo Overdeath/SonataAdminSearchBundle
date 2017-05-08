@@ -39,7 +39,7 @@ class FilterTypeGuesser implements TypeGuesserInterface
         $options['parent_association_mappings'] = $parentAssociationMappings;
 
         // FIXME: Try to implement association using elastica
-        /*
+
         if ($metadata->hasAssociation($propertyName)) {
             $mapping = $metadata->getAssociationMapping($propertyName);
 
@@ -60,9 +60,14 @@ class FilterTypeGuesser implements TypeGuesserInterface
                     $options['field_name']   = $mapping['fieldName'];
                     $options['mapping_type'] = $mapping['type'];
 
-                    return new TypeGuess('doctrine_orm_model', $options, Guess::HIGH_CONFIDENCE);
+                    return new TypeGuess('sonata_search_elastica_string', $options, Guess::HIGH_CONFIDENCE);
             }
-        }*/
+        }
+        if (!isset($metadata->fieldMappings[$propertyName])) {
+            var_dump($metadata);
+            var_dump($ret);
+            die();
+        }
 
         $options['field_name'] = $metadata->fieldMappings[$propertyName]['fieldName'];
 
