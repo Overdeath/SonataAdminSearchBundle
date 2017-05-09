@@ -60,7 +60,7 @@ class FilterTypeGuesser implements TypeGuesserInterface
                     $options['field_name']   = $mapping['fieldName'];
                     $options['mapping_type'] = $mapping['type'];
 
-                    return new TypeGuess('sonata_search_elastica_string', $options, Guess::HIGH_CONFIDENCE);
+                    return new TypeGuess('sonata_search_elastica_entity', $options, Guess::HIGH_CONFIDENCE);
             }
         }
         if (!isset($metadata->fieldMappings[$propertyName])) {

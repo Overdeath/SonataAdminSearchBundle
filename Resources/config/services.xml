@@ -45,5 +45,8 @@
         <service id="sonata.admin.search.filter.type.datetime.range" class="Sonata\AdminSearchBundle\Filter\DateTimeRangeFilter">
             <tag name="sonata.admin.filter.type" alias="sonata_search_elastica_datetime_range"/>
         </service>
+        <service id="sonata.admin.search.filter.type.entity" class="Sonata\AdminSearchBundle\Filter\EntityFilter">
+            <tag name="sonata.admin.filter.type" alias="sonata_search_elastica_entity"/>
+        </service>
     </services>
 </container>
