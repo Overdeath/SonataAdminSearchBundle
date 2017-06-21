@@ -37,14 +37,20 @@ class EntityFilter extends Filter
 
         // Create a query that match terms (indepedent of terms order) or a phrase
         $queryBuilder = new \Elastica\Query\Builder();
+        
+        $path = $field;
+        foreach ($this->getParentAssociationMappings() as $parentAssociationMapping) {
+            $path = $parentAssociationMapping["fieldName"].".".$path;
+        }
+
         $queryBuilder
             ->fieldOpen($secondOperator)
-                ->field('path', $field)
+                ->field('path', $path)
                 ->fieldOpen('query')
                     ->bool()
                         ->must()
                             ->fieldOpen("match")
-                                ->field($field.".id", $entity->getId())
+                                ->field($path.".id", $entity->getId())
                             ->fieldClose()
                         ->mustClose()
                     ->boolClose()
